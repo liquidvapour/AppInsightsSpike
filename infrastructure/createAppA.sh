@@ -14,3 +14,8 @@ az webapp create \
     -p $planname \
     --runtime "DOTNET|5.0" \
     --deployment-local-git
+
+az webapp config appsettings set \
+    --resource-group $rgname \
+    --name $webappname \
+    --settings WEBSITE_RUN_FROM_PACKAGE="1"
