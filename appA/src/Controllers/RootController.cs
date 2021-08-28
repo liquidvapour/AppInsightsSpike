@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,7 @@ namespace AppA.Controllers
         }
 
         [HttpGet]
-        public async Task<string> Get()
+        public async Task<IReadOnlyCollection<Model>> Get()
         {
             _logger.LogInformation("HelloWorld endpoint requested");
 
@@ -34,7 +35,7 @@ namespace AppA.Controllers
                 return JsonConvert.DeserializeObject<List<Model>>(content);
             }
 
-            return "Hello, World";
+            return new Model[0];
         }
 
     }
