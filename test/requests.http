@@ -22,3 +22,8 @@ content-type: application/json
 
 GET https://app-appbinsightsspike.azurewebsites.net/WeatherForecast
 content-type: application/json
+
+###
+
+GET https://app-appbinsightsspike.azurewebsites.net/swagger/v1/swagger.json
+content-type: application/json

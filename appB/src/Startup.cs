@@ -23,9 +23,19 @@ namespace AppA
 
         public IConfiguration Configuration { get; }
 
+        const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                builder =>
+                                {
+                                    builder.WithOrigins("https://petstore.swagger.io");
+                                });
+            });
             services.AddApplicationInsightsTelemetry();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -47,7 +57,7 @@ namespace AppA
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
