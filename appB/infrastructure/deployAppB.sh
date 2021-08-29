@@ -1,3 +1,4 @@
+#!/bin/bash
 planname="plan-appInsightsSpike"
 webappname="app-appBInsightsSpike"
 
