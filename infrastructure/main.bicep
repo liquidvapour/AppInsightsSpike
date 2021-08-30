@@ -21,7 +21,7 @@ module appServiceA './webapp.bicep' = {
   params: {
     appName: '${webSiteName}A'
     serverFarmId: appServicePlan.id
-    instrumentationKey: appInsights.properties.InstrumentationKey
+    instrumentationKey: appInsights.outputs.instrumentationKey
   }
 }
 
@@ -30,30 +30,10 @@ module appServiceB './webapp.bicep' = {
   params: {
     appName: '${webSiteName}B'
     serverFarmId: appServicePlan.id
-    instrumentationKey: appInsights.properties.InstrumentationKey
+    instrumentationKey: appInsights.outputs.instrumentationKey
   }
 }
 
-var workspaceName = 'appInsightsSpikeWorkspace'
-
-resource workspace 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
-  name: workspaceName
-  location: location
-  properties: {
-    sku: {
-      name: 'Free'
-    }
-  }
+module appInsights './appInsights.bicep' = {
+  name: 'appInsights'
 }
-
-resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
-  name: 'insightsSpike'
-  location: location
-  kind: 'web'
-  properties: {
-    Application_Type: 'web'
-    WorkspaceResourceId: workspace.id
-  }
-}
-
-
