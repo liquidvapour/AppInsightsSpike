@@ -2,7 +2,7 @@
 cd ../src
 
 echo "package app"
-dotnet publish -o ./deploy
+dotnet publish -o ../deploy
 
-cd deploy
-zip -r app.zip .
+cd ../deploy
+zip -r appB.zip .

@@ -1,12 +1,11 @@
 #!/bin/bash
-webappname="app-appBInsightsSpike"
+webappname="app-appInsightsSpike01B"
 
-rgname="rg-appInsightsSpike"
+rgname="rg-appInsightsSpike01"
 
-cd deploy
 
 echo "Deploying webapp"
 az webapp deployment source config-zip \
     --resource-group $rgname \
     --name $webappname \
-    --src app.zip
+    --src ../deploy/appB.zip
