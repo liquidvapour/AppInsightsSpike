@@ -1,18 +1,9 @@
-planname="plan-appInsightsSpike"
-webappname="app-appInsightsSpike"
+webappname="app-appInsightsSpike01A"
 
-rgname="rg-appInsightsSpike"
-
-cd ../appA/src
-
-echo "package app"
-dotnet publish -o ../deploy
-
-cd ../deploy
-zip -r appA.zip .
+rgname="rg-appInsightsSpike01"
 
 echo "Deploying webapp"
 az webapp deployment source config-zip \
     --resource-group $rgname \
     --name $webappname \
-    --src appA.zip
+    --src ../deploy/appA.zip
